@@ -37,6 +37,31 @@ vim.schedule(function()
 end)
 
 -- make the background transparent
-vim.cmd [[ hi Normal guibg=NONE ctermbg=NONE ]]
-vim.cmd [[ hi NormalNC guibg=NONE ctermbg=NONE ]]
-vim.cmd [[ hi EndOfBuffer guibg=NONE ctermbg=NONE ]]
+local function make_transparent()
+  local groups = {
+    "Normal", "NormalNC", "EndOfBuffer",
+    "NvimTreeNormal", "NvimTreeNormalNC", "NvimTreeEndOfBuffer",
+  }
+  for _, g in ipairs(groups) do
+    vim.api.nvim_set_hl(0, g, { bg = "none" })
+  end
+
+  vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#3b3b3b", bg = "none" })
+  vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { fg = "#3b3b3b", bg = "none" })
+
+end
+
+-- apply now
+make_transparent()
+
+-- re-apply after theme loads
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = make_transparent,
+})
+
+-- re-apply when NvimTree windows appear
+vim.api.nvim_create_autocmd({ "FileType", "BufWinEnter" }, {
+  pattern = { "NvimTree", "NvimTree*" },
+  callback = make_transparent,
+})
