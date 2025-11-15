@@ -57,3 +57,9 @@ map('n', '<Leader>di',  dapui.toggle,       { desc = ' Debug: Toggle DAP UI' 
 -- Exception breakpoints (e.g. break on all exceptions)
 map('n', '<Leader>dE', function() dap.set_exception_breakpoints({'all'}) end, { desc = ' Debug: Exception Breakpoints' })
 map("n", "<Leader>dt", "<cmd>lua vim.cmd('RustLsp testables')<CR>", { desc = "Debugger testables" })
+
+-- Cscope
+map("n", "<leader>sd", "Find symbol; :Cs find s <C-R>=expand('<cword>')<CR><CR>", opts) -- Find symbol
+map("n", "<leader>gd", "Global definition; :Cs find g <C-R>=expand('<cword>')<CR><CR>", opts) -- Global definition
+map("n", "<leader>cd", "Callers of function; :Cs find c <C-R>=expand('<cword>')<CR><CR>", opts) -- Callers of function
+map("n", "<leader>td", "Text search; :Cs find t <C-R>=expand('<cword>')<CR><CR>", opts) -- Text search

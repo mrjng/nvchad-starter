@@ -101,4 +101,14 @@ return {
   -- 		},
   -- 	},
   -- },
+  -- Add this block to enable cscope/ctags commands
+  {
+    "dhananjaylatkar/cscope_maps.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },  -- optional, for a Telescope picker
+    cmd = { "Cscope", "Cs", },                             -- load only when you invoke these
+    opts = {},                                            -- defaults are fine
+    config = function(_, opts)
+      require("cscope_maps").setup(opts)
+    end,
+  },
 }
