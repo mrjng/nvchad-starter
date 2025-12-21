@@ -9,6 +9,10 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
+      -- First, load the default NvChad internal config
+      require "nvchad.configs.lspconfig"
+
+      -- Then, load YOUR custom config file we just wrote
       require "configs.lspconfig"
     end,
   },
@@ -139,5 +143,18 @@ return {
         virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
       },
     },
+    require("gitsigns").setup {
+      -- ... other settings ...
+      preview_config = {
+        -- Default options for the floating window
+        border = "rounded",
+        style = "minimal",
+        relative = "cursor",
+        row = 0,
+        col = 1,
+        width = 80, -- <--- LIMIT WIDTH HERE
+        height = 25,
+      },
+    }
   },
 }

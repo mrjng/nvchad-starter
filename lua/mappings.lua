@@ -78,7 +78,26 @@ map("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>", { desc = "Togg
 
 -- View full commit info for the current line in a floating window
 map("n", "<leader>gd", function()
-  require("gitsigns").blame_line { full = true }
+  require("gitsigns").blame_line {
+    full = true,
+    ignore_whitespace = true,
+    -- ADD THESE OPTIONS:
+    extra_opts = {
+      virt_text_pos = "eol",
+      virt_text_width = 10,
+    },
+    -- Use a custom configuration for the floating window itself
+    opts = {
+        relative = "cursor",
+        row = 0,
+        col = 1,
+        anchor = "NW",
+        width = 80,         -- Force the width to 80 chars
+        height = 20,        -- (Optional) Limit height if messages are huge
+        border = "single",
+        style = "minimal",
+    }
+  }
 end, { desc = "View git commit details" })
 
 -- Browse history of the current file
