@@ -129,5 +129,15 @@ return {
 
       vim.api.nvim_create_autocmd("TextYankPost", { callback = copy })
     end,
-  }
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = {
+      current_line_blame = true, -- Set this to true
+      current_line_blame_opts = {
+        delay = 500, -- Delay in ms before blame appears (like VSCode)
+        virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+      },
+    },
+  },
 }
