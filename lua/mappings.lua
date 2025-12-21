@@ -68,3 +68,23 @@ map("n", "<leader>td", "Text search; :Cs find t <C-R>=expand('<cword>')<CR><CR>"
 map("n", "<leader>y", require("osc52").copy_operator, { expr = true, desc = "Copy to OS clipboard" })
 map("n", "<leader>yy", "<leader>y_", { remap = true, desc = "Copy line to OS clipboard" })
 map("v", "<leader>y", require("osc52").copy_visual, { desc = "Copy selection to OS clipboard" })
+
+-- ─────────────────────────────────────────────────────────────────────────
+-- Git-related Mappings
+-- ─────────────────────────────────────────────────────────────────────────
+
+-- Toggle inline blame (GitLens style)
+map("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle Git Blame" })
+
+-- View full commit info for the current line in a floating window
+map("n", "<leader>gd", function()
+  require("gitsigns").blame_line { full = true }
+end, { desc = "View git commit details" })
+
+-- Browse history of the current file
+map("n", "<leader>gl", ":Telescope git_bcommits<CR>", { desc = "List file git history" })
+
+-- LazyGit
+map("n", "<leader>gg", function()
+  require("nvchad.term").toggle { pos = "float", id = "lazygit", cmd = "lazygit" }
+end, { desc = "Toggle LazyGit" })
