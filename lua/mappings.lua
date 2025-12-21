@@ -63,3 +63,8 @@ map("n", "<leader>sd", "Find symbol; :Cs find s <C-R>=expand('<cword>')<CR><CR>"
 map("n", "<leader>gd", "Global definition; :Cs find g <C-R>=expand('<cword>')<CR><CR>", opts) -- Global definition
 map("n", "<leader>cd", "Callers of function; :Cs find c <C-R>=expand('<cword>')<CR><CR>", opts) -- Callers of function
 map("n", "<leader>td", "Text search; :Cs find t <C-R>=expand('<cword>')<CR><CR>", opts) -- Text search
+
+-- Copy to system clipboard using Leader + y
+map("n", "<leader>y", require("osc52").copy_operator, { expr = true, desc = "Copy to OS clipboard" })
+map("n", "<leader>yy", "<leader>y_", { remap = true, desc = "Copy line to OS clipboard" })
+map("v", "<leader>y", require("osc52").copy_visual, { desc = "Copy selection to OS clipboard" })

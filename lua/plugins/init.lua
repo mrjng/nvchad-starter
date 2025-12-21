@@ -111,4 +111,23 @@ return {
       require("cscope_maps").setup(opts)
     end,
   },
+  {
+    "ojroques/nvim-osc52",
+    config = function()
+      require("osc52").setup {
+        max_length = 0,           -- Unlimited length
+        silent = true,            -- Disable message on copy
+        trim = false,             -- Do not trim newlines
+      }
+
+      -- Automatically copy to system clipboard on yank
+      local function copy()
+        if vim.v.event.operator == "y" and vim.v.event.regname == "" then
+          require("osc52").copy_register("")
+        end
+      end
+
+      vim.api.nvim_create_autocmd("TextYankPost", { callback = copy })
+    end,
+  }
 }
