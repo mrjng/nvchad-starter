@@ -9,10 +9,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      -- First, load the default NvChad internal config
-      require "nvchad.configs.lspconfig"
-
-      -- Then, load YOUR custom config file we just wrote
+      -- load YOUR custom config file we just wrote
       require "configs.lspconfig"
     end,
   },
