@@ -90,18 +90,18 @@ return {
       })
     end
   },
-  -- test new blink
-  -- { import = "nvchad.blink.lazyspec" },
 
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    opts = {
+      ensure_installed = {
+        "vim", "lua", "vimdoc",
+        "html", "css", "rust", "c", "cpp"
+      },
+    },
+  },
+
   -- Add this block to enable cscope/ctags commands
   {
     "dhananjaylatkar/cscope_maps.nvim",
@@ -134,24 +134,20 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     opts = {
-      current_line_blame = true, -- Set this to true
+      current_line_blame = true,
       current_line_blame_opts = {
-        delay = 500, -- Delay in ms before blame appears (like VSCode)
-        virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+        delay = 500,
+        virt_text_pos = "eol",
       },
-    },
-    require("gitsigns").setup {
-      -- ... other settings ...
       preview_config = {
-        -- Default options for the floating window
         border = "rounded",
         style = "minimal",
         relative = "cursor",
         row = 0,
         col = 1,
-        width = 80, -- <--- LIMIT WIDTH HERE
+        width = 80,
         height = 25,
       },
-    }
+    },
   },
 }
