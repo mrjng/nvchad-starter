@@ -86,6 +86,16 @@ return {
             return vim.fn.getcwd() .. "/kernel/kernel"
           end,
           cwd = "${workspaceFolder}",
+        },
+        {
+          name = "Launch Local Executable",
+          type = "gdb",
+          request = "launch",
+          program = function()
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+          end,
+          cwd = "${workspaceFolder}",
+          stopAtBeginningOfMainSubprogram = true,
         }
       }
     end
