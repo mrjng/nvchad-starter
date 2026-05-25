@@ -24,6 +24,7 @@ local on_attach = function(client, bufnr)
   map("n", "K", vim.lsp.buf.hover, opts)
   map("n", "<leader>ra", vim.lsp.buf.rename, opts)
   map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+  map("n", "gr", vim.lsp.buf.references, opts)
   map("n", "<leader>fm", function() vim.lsp.buf.format { async = true } end, opts)
 end
 
@@ -36,7 +37,7 @@ vim.lsp.config["clangd"] = {
     "--clang-tidy",
     "--header-insertion=never", -- Critical for Kernel
     "--completion-style=detailed",
-    "--function-arg-placeholders",
+    "--function-arg-placeholders=1",
   },
   -- 'root_markers' is the new v0.11 way to find the project root
   root_markers = { "compile_commands.json", ".git", "Kbuild" },

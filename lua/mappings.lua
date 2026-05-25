@@ -77,7 +77,7 @@ map("v", "<leader>y", require("osc52").copy_visual, { desc = "Copy selection to 
 map("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle Git Blame" })
 
 -- View full commit info for the current line in a floating window
-map("n", "<leader>gd", function()
+map("n", "<leader>gD", function()
   require("gitsigns").blame_line {
     full = true,
     ignore_whitespace = true,

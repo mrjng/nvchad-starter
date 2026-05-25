@@ -52,6 +52,42 @@ return {
       dap.listeners.before.event_exited.dapui_config = function()
         dapui.close()
       end
+      local gdb_command = "gdb"
+      if vim.fn.executable("riscv64-elf-gdb") == 1 then
+        gdb_command = "riscv64-elf-gdb"
+      elseif vim.fn.executable("riscv64-unknown-elf-gdb") == 1 then
+        gdb_command = "riscv64-unknown-elf-gdb"
+      elseif vim.fn.executable("gdb-multiarch") == 1 then
+        gdb_command = "gdb-multiarch"
+      end
+
+      local port = "25000"
+      local uid_handle = io.popen("id -u")
+      if uid_handle then
+        local uid = tonumber(uid_handle:read("*a"))
+        uid_handle:close()
+        if uid then
+          port = tostring(uid % 5000 + 25000)
+        end
+      end
+
+      dap.adapters.gdb = {
+        type = "executable",
+        command = gdb_command,
+        name = "gdb",
+      }
+      dap.configurations.c = {
+        {
+          name = "Attach to QEMU (xv6)",
+          type = "gdb",
+          request = "attach",
+          target = "localhost:" .. port,
+          program = function()
+            return vim.fn.getcwd() .. "/kernel/kernel"
+          end,
+          cwd = "${workspaceFolder}",
+        }
+      }
     end
   },
 
