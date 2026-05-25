@@ -74,7 +74,7 @@ return {
       dap.adapters.gdb = {
         type = "executable",
         command = gdb_command,
-        name = "gdb",
+        args = { "-i", "dap", "-nx" },
       }
       dap.configurations.c = {
         {

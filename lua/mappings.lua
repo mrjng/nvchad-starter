@@ -50,8 +50,8 @@ map('n', '<Leader>di',  dapui.toggle,       { desc = ' Debug: Toggle DAP UI' 
 -- map('n', '<Leader>ds',  dapui.scopes,       { desc = ' Debug: Show Scopes' })
 
 -- ─────────────────────────────────────────────────────────────────────────
--- Expression evaluation
 -- map({'n','v'}, '<Leader>de', dap.eval,      { desc = ' Debug: Evaluate' })
+map({"n", "v"}, "<Leader>dh", function() require("dapui").eval() end, { desc = "Debug: Hover value" })
 
 -- ─────────────────────────────────────────────────────────────────────────
 -- Exception breakpoints (e.g. break on all exceptions)
