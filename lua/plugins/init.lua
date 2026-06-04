@@ -182,9 +182,10 @@ return {
     opts = {
       current_line_blame = true,
       current_line_blame_opts = {
-        delay = 500,
+        delay = 0,
         virt_text_pos = "eol",
       },
+      current_line_blame_formatter = "                    <author>, <author_time:%R> · <summary>",
       preview_config = {
         border = "rounded",
         style = "minimal",
@@ -195,5 +196,9 @@ return {
         height = 25,
       },
     },
+    config = function(_, opts)
+      require("gitsigns").setup(opts)
+      vim.api.nvim_set_hl(0, "GitSignsCurrentLineBlame", { fg = "#7aa2f7", italic = true })
+    end,
   },
 }

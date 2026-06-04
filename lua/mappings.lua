@@ -74,7 +74,7 @@ map("v", "<leader>y", require("osc52").copy_visual, { desc = "Copy selection to 
 -- ─────────────────────────────────────────────────────────────────────────
 
 -- Toggle inline blame (GitLens style)
-map("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle Git Blame" })
+map("n", "<leader>gb", "<cmd>Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle Git Blame" })
 
 -- View full commit info for the current line in a floating window
 map("n", "<leader>gD", function()
