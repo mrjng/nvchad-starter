@@ -24,7 +24,8 @@ return {
       local codelldb_pkg = vim.fn.stdpath("data") .. "/mason/packages/codelldb"
       local extension_path = codelldb_pkg .. "/extension/"
       local codelldb_path = extension_path .. "adapter/codelldb"
-      local liblldb_path = extension_path.. "lldb/lib/liblldb.dylib"
+      local liblldb_name = vim.fn.has "mac" == 1 and "liblldb.dylib" or "liblldb.so"
+      local liblldb_path = extension_path .. "lldb/lib/" .. liblldb_name
       local cfg = require('rustaceanvim.config')
 
       vim.g.rustaceanvim = {
@@ -47,7 +48,8 @@ return {
       local codelldb_pkg = vim.fn.stdpath("data") .. "/mason/packages/codelldb"
       local extension_path = codelldb_pkg .. "/extension/"
       local codelldb_path = extension_path .. "adapter/codelldb"
-      local liblldb_path = extension_path.. "lldb/lib/liblldb.dylib"
+      local liblldb_name = vim.fn.has "mac" == 1 and "liblldb.dylib" or "liblldb.so"
+      local liblldb_path = extension_path .. "lldb/lib/" .. liblldb_name
       -- Define lldb adapter directly without relying on lazy-loaded rustaceanvim
       dap.adapters.lldb = {
         type = "server",
